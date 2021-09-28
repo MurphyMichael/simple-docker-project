@@ -1,11 +1,9 @@
-FROM ubuntu
+FROM python:3.8-slim-buster
 
-RUN apt-get update
-RUN apt-get install -y python
-RUN apt-get install -y pip
+WORKDIR /simple-docker-project
 
-RUN pip install flask
+RUN pip3 install flask
 
-COPY app.py /opt/
+COPY . .
 
-ENTRYPOINT FLASK_APP=/OPT/app.py flask run --host=0.0.0.0
+CMD [ "python3", "-m", "flask", "run", "--host=0.0.0.0" ]
